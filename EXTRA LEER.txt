@@ -1,0 +1,22 @@
+ISACLOUD_MX & CLOUDMR
+
+@2025 DICIEMBRE V= 1.1 DESARROLLO BASE
+
+NUESTRO SISTEMA EN LA VERSION BASE ES TOTALMENTE GRATUITO Y DE NUESTRA AUTORIA.
+
+MANEJAMOS MAS AVANZADOS. GRACIAS POR TOMARTE TU TIEMPO DE USAR NUESTRO SISTEMA
+==============================================================================
+
+TABLA USUARIOS:
+
+USER: cajero1
+
+pss: cajero_mx
+
+
+USER: admin2.1
+
+pss: admon_mx
+
+
+================================================================================
