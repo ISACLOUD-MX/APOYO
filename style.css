@@ -1,0 +1,173 @@
+/* style.css */
+
+body {
+    background-color: #f8f9fa; /* Fondo gris claro para el cuerpo */
+    overflow-x: hidden; /* Evita el scroll horizontal (aunque ya no haya marquesina, es una buena práctica si hay otros elementos) */
+    display: flex; /* Habilita Flexbox en el body */
+    flex-direction: column; /* Apila los elementos hijos verticalmente */
+    min-height: 100vh; /* Asegura que el body ocupe al menos el 100% de la altura del viewport */
+    margin: 0; /* Elimina el margen predeterminado del body */
+    padding-bottom: 50px; /* Añade un padding en la parte inferior igual a la altura del footer */
+}
+
+.header-marquee-container {
+    position: fixed; /* Mantiene la posición fija */
+    bottom: 0; /* Lo fija en la parte inferior de la ventana */
+    left: 0; /* Lo alinea a la izquierda */
+    width: 100%; /* Ocupa todo el ancho de la ventana */
+    height: 50px; /* Altura del pie de página */
+    overflow: hidden; /* Oculta cualquier desbordamiento si el texto es muy largo */
+    background-color: #343a40; /* Fondo oscuro para el pie de página */
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centra horizontalmente el contenido del footer */
+    z-index: 1000; /* Asegura que esté por encima de otros elementos */
+    color: #fff; /* Color del texto para el pie de página */
+    font-family: 'Arial', sans-serif;
+    font-size: 1.1rem; /* Tamaño de fuente para el pie de página */
+    padding: 0 20px; /* Espaciado interno */
+}
+
+/* El abstract-bg y su animación se mantienen si quieres el fondo animado.
+   Si quieres un color de fondo sólido, puedes eliminar .abstract-bg por completo
+   y simplemente usar background-color en .header-marquee-container. */
+.abstract-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Degradado de colores para el fondo abstracto */
+    background: linear-gradient(45deg, #007bff, #6f42c1, #20c997, #fd7e14);
+    background-size: 400% 400%; /* Permite la animación del degradado */
+    animation: gradientAnimation 15s ease infinite;
+    opacity: 0.6; /* Ajusta para el nivel de abstracción deseado */
+    z-index: 1; /* Asegura que esté detrás del texto */
+}
+
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.marquee-content-wrapper {
+    position: relative; /* Mantener relative si hay elementos dentro */
+    width: 100%;
+    display: flex;
+    justify-content: space-between; /* Alinea elementos a los extremos */
+    align-items: center;
+    z-index: 10; /* Asegura que el texto esté por encima del fondo abstracto */
+}
+
+/* Eliminamos la animación de la marquesina */
+.marquee-text {
+    white-space: nowrap; /* Evita que el texto se rompa */
+    /* Eliminamos la animación de la marquesina */
+    /* animation: marqueeScroll 15s linear infinite; */
+    position: static; /* Cambiado a static para que fluya normalmente */
+    left: auto; /* Reiniciar */
+    transform: none; /* Reiniciar */
+    font-size: 1.1rem; /* Ajuste de tamaño */
+    flex-grow: 1; /* Permite que ocupe el espacio disponible */
+    text-align: left; /* Alinea el texto a la izquierda */
+}
+
+.version-text {
+    position: static; /* Cambiado a static para que fluya normalmente */
+    right: auto; /* Reiniciar */
+    font-size: 0.9rem; /* Tamaño de fuente para la versión */
+    opacity: 0.8;
+    font-weight: bold; /* ¡Versión en negritas! */
+    margin-left: 20px; /* Espacio entre el texto y la versión */
+}
+
+/* Eliminamos el keyframe de la marquesina ya que no se usará */
+/* @keyframes marqueeScroll { ... } */
+
+
+/* Ajustes Responsivos - Muy importantes para el padding-bottom del body */
+@media (max-width: 768px) {
+    .header-marquee-container {
+        height: 70px; /* Un poco más de altura en pantallas pequeñas */
+        font-size: 1rem;
+    }
+    body {
+        padding-bottom: 70px; /* Ajusta el padding del body para la altura del footer responsivo */
+    }
+
+    .marquee-text {
+        font-size: 0.9rem;
+    }
+
+    .version-text {
+        font-size: 0.8rem;
+        margin-left: 15px;
+    }
+}
+
+@media (max-width: 576px) {
+    .header-marquee-container {
+        height: 60px;
+        font-size: 0.9rem;
+        padding: 0 10px; /* Menos padding en móviles */
+    }
+    body {
+        padding-bottom: 60px; /* Ajusta el padding del body para la altura del footer responsivo */
+    }
+
+    .marquee-text {
+        font-size: 0.85rem;
+    }
+
+    .version-text {
+        font-size: 0.75rem;
+        margin-left: 10px;
+    }
+}
+
+/* Elementos de diseño abstracto adicionales (opcional) */
+/* Se mantienen si te gusta el efecto visual, si no, puedes eliminarlos. */
+.abstract-bg::before,
+.abstract-bg::after {
+    content: '';
+    position: absolute;
+    background: rgba(255, 255, 255, 0.1); /* Formas semitransparentes */
+    border-radius: 50%; /* Formas circulares */
+    filter: blur(20px); /* Efecto de desenfoque */
+    z-index: 1; /* Asegura que estén detrás del texto */
+}
+
+.abstract-bg::before {
+    width: 80px;
+    height: 80px;
+    top: 10px;
+    left: 10%;
+    animation: float1 12s ease-in-out infinite alternate; /* Animación de flotación */
+}
+
+.abstract-bg::after {
+    width: 120px;
+    height: 120px;
+    bottom: 20px;
+    right: 15%;
+    animation: float2 18s ease-in-out infinite alternate-reverse; /* Animación de flotación inversa */
+}
+
+@keyframes float1 {
+    0% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(20px, 30px) scale(1.1); }
+    100% { transform: translate(0, 0) scale(1); }
+}
+
+@keyframes float2 {
+    0% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(-30px, -20px) scale(0.9); }
+    100% { transform: translate(0, 0) scale(1); }
+}
